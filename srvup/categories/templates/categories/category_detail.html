@@ -1,0 +1,54 @@
+<html>
+<style>
+
+
+</style>
+<body>
+{% extends "base/base.html" %}
+{% load render_video %}
+{% block title %}{{ object.title }}{{ block.super }}{% endblock title %}
+{% block content %}
+<div class='container'>
+<div class='row'>
+    <div class='col-sm-12'>
+    <br>
+        <h1>{{ object.title }} {% if courses.count > 1 %}<small>{{ courses.count }} Courses</small>{% endif %}</h1>
+        <hr>
+    {% if not courses %}
+        <h1> Courses Coming Soon...</h1>
+    {% endif %}
+    </div>
+</div>
+</div>
+
+    <div class='row '>
+    {% for item in featured_courses %}
+        <div class='col-sm-2 '>
+        {% include 'courses/snippets/course_featured_display.html' with course=item %}
+        </div>
+    {% endfor %}
+    </div>
+<br>
+<div class="container">
+{% if courses %}
+<h1>OTHER COURSES</h1>
+    <hr>
+{% endif %}
+
+
+    <div class='row'>
+    {% for item in courses %}
+        <div class='col-md-3 col-sm-6'>
+        {% include 'courses/snippets/course_thumbnail_display.html' with course=item %}
+        </div>
+        {% cycle '' '' '' '</div><div class="row">' %}
+
+    {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
+</body>
+</html>

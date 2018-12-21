@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% block title %}
+Videos{{ block.super }}
+{% endblock title %}
+{% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
+    <h1>Hi</h1>
+    {% include 'videos/search-view.html' with request=request %}
+
+    {% if request.GET.q %}
+        <p>You searched for <b>{{ request.GET.q }}</b></p>
+    {% endif %}
+        <ul>
+        {% for item in object_list %}
+            <li><a href='{{ item.get_absolute_url }}'>{{ item.title }}</a></li>
+
+            {% empty %}
+            <li>No item found</li>
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base/base.html" %}
+{% load search_form %}
+{% block title %}Search Results {{ block.super }}{% endblock title %}
+ {% block content %}
+     <div class="container">
+ <div class='row'>
+<div class='col-sm-12 col-sm-offset-4'>
+<br>
+<h1>Search {% if request.GET.q %}<small>Results for {{ request.GET.q }}</small>{% endif %}</h1>
+{% search_form request False %}
+</div>
+</div>
+     {% if request.GET.q %}
+     <div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+<h2>Results</h2>
+<h4>Courses Results</h4>
+{% for item in qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+{% if not qs %}
+    <h6> No Courses Found</h6>
+{% endif %}
+<h4>Category Results</h4>
+ {% for item in c_qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+{% if not c_qs %}
+    <h6> No Category Found</h6>
+{% endif %}
+<h4>Lectures Results</h4>
+{% for item in l_qs %}
+    <a href='{{ item.get_absolute_url }}'>{{ item.id }}- {{ item.title }}</a><br/>
+{% endfor %}
+{% if not l_qs %}
+    <h6> No Lectures Found</h6>
+{% endif %}
+ </div>
+ </div>
+     {% endif %}
+     </div>
+ {% endblock %}

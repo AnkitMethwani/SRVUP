@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+ {% load humanize %}
+{% block title %}Videos {{ block.super }}{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container">
+
+     <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'course-list' %}">Courses</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ object.title }}</li>
+  </ol>
+
+
+</nav>
+
+
+     <div class="row">
+    <div class="col">
+        <h1>{{ object.title }}</h1>
+        {{ object.description|linebreaks }}
+        {% if not object.is_owner %}
+            <a href='{{ object.get_purchase_url }}'>Purchase</a>
+            {{ object.display_price }}
+        {% endif %}
+    </div>
+    <div class="col">
+        {% if object.image %}
+            <img src='{{ object.image.url }}'  class="img-fluid img-thumbnail" style="width: 850px;height: 350px">
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+
+   <br>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='row'>
+    <div class='col-sm-12'>
+    <h3>Lectures</h3>
+    {% for item in object.lecture_set.all %}
+    <div class="list-group">
+        <a class="list-group-item lead"  href='{{ item.get_absolute_url }}'>{{ item.title }} {% if item.free %}<small>Free Preview</small>{% endif %}</a>
+
+    {% empty %}
+        <p class='lead'>Lectures coming soon</p>
+    </div>
+    {% endfor %}
+    </div>
+    </div>
+<br>
+    <br>
+    <br>
+    <br>
+</div>
+</div>
+    </div>
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,29 @@
+{% if not navbar %}
+<br>
+<form method='GET' action='{% url "default" %}'>
+    <div class="row">
+        <div class="col">
+<input type='text' value='{{ request.GET.q }}' name='q' class='form-control' placeholder="Search..">
+<!-- <input type='hidden' value='{{ request.GET.page }}' name='page' class='form-control'> -->
+</div>
+        <div class="col">
+            <button  class='btn btn-success' type='submit' ><i class='fa fa-search'></i> Search</button>
+        </div>
+    </div>
+</form>
+<hr>
+
+{% else %}
+<form class="form-inline my-2 my-lg-0" method='GET' action='{% url "default" %}'>
+<div class="form-group">
+
+  <input type='text' value='{{ request.GET.q }}' name='q' class='form-control mr-sm-2' placeholder="Search..">
+</div>
+<button  class='btn btn-success my-2 my-sm-0' type='submit' ><i class='fa fa-search'></i> Search</button>
+</form>
+{% endif %}
+
+
+
+
+

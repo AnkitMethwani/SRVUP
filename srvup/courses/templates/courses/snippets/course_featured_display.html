@@ -1,0 +1,15 @@
+<div class="card " style="width: 14rem;" >
+    {% if course.image %}
+       <a href="{{ course.get_absolute_url }}"><img src="{{ course.image.url }}" class="card-img-top" style="height: 9rem;"></a>
+    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ course.title }}</h5>
+      {% if not item.is_owner %}
+    <a href='{{ item.get_purchase_url }}' class="btn btn-warning">Purchase {{ item.display_price }}</a>
+        {% else %}
+    <a href="{{ course.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
+        {% endif %}
+  </div>
+
+</div>
+

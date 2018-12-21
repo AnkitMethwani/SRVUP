@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+ {% load humanize %}
+{% block title %}Videos | {{ block.super }}{% endblock title %}
+
+
+{% block content %}
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+
+
+{% include 'courses/search-view.html' with request=request %}
+     <div class='row'>
+     <h1>Please purchase to continue</h1>
+    <div class='col-sm-12'>
+
+    <h1>{{ object.title }}</h1>
+
+    {{ object.description|linebreaks }}
+     {% if not object.is_owner %}
+     <a href='{{ object.get_purchase_url }}'>Purchase</a>
+    {{ object.display_price }}
+    {% endif %}
+    </div>
+
+    </div>
+
+
+
+</div>
+</div>
+{% endblock content %}

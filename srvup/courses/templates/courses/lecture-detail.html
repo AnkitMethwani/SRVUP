@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load render_video %}
+ {% block title %}{{ object.title }}{{ block.super }}{% endblock title %}
+
+ {% block content %}
+
+
+     <div class="container">
+
+
+
+       <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'course-list' %}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="{{ object.course.get_absolute_url }}">{{ object.course.title }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ object.title }}</li>
+  </ol>
+</nav>
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+        <br>
+    <h3>{{ object.title }}  <small>{{ object.updated }}</small></h3>
+        <br>
+
+
+
+</div>
+</div>
+         <div class="container">
+      <div class='row' style="height: 34rem">
+{% render_video object.video %}
+         </div>
+</div>
+     <hr>
+
+<br>
+     <br>
+     <br>
+</div>
+{% endblock content %}

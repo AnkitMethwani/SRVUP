@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block title %}
+{{ object.title }}{{ block.super }}
+{% endblock title %}
+{% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
+{% include 'videos/search-view.html' with request=request %}
+
+    <h1>{{ object.title }}</h1>
+
+    {{ object.title }}
+    {{ object.embed_code|safe }}
+    {{ object.updated }}
+    {{ object.id }}
+</div>
+</div>
+{% endblock content %}
